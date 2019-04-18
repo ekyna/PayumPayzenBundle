@@ -1,32 +1,32 @@
 {
-    "name" : "ekyna/payum-payzen-bundle",
-    "description" : "Payum PayZen supports",
-    "type" : "symfony-bundle",
-    "authors" : [
+    "name": "ekyna/payum-payzen-bundle",
+    "description": "Payum PayZen supports",
+    "type": "symfony-bundle",
+    "authors": [
         {
-            "name" : "Etienne Dauvergne",
-            "homepage" : "http://ekyna.com"
+            "name": "Etienne Dauvergne",
+            "homepage": "http://ekyna.com"
         }
     ],
-    "keywords" : [
+    "keywords": [
         "symfony2",
         "payum",
-        "sips",
+        "payzen",
         "bundle"
     ],
-    "homepage" : "https://github.com/ekyna/PayumPayzenBundle",
-    "license" : [
+    "homepage": "https://github.com/ekyna/PayumPayzenBundle",
+    "license": [
         "MIT"
     ],
-    "require" : {
-        "php" : ">=5.4",
-        "symfony/framework-bundle" : "~3.0",
-        "payum/payum-bundle": "^2.3.0",
-        "ekyna/payum-payzen": "^1.3"
+    "require": {
+        "php": "^7.0",
+        "symfony/framework-bundle": "^3.0|^4.0",
+        "payum/payum-bundle": "^2.3",
+        "ekyna/payum-payzen": "^1.5"
     },
-    "autoload" : {
-        "psr-4" : {
-            "Ekyna\\Bundle\\PayumPayzenBundle\\" : ""
+    "autoload": {
+        "psr-4": {
+            "Ekyna\\Bundle\\PayumPayzenBundle\\": ""
         }
     }
 }

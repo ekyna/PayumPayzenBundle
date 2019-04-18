@@ -23,13 +23,16 @@ class RegisterGatewayPass implements CompilerPassInterface
             return;
         }
 
-        $defaultConfig = [
-            'payum.api_config' => new Parameter('ekyna_payum_payzen.api_config'),
-        ];
+        $builder = $container->getDefinition('payum.builder');
 
-        $payumBuilder = $container->getDefinition('payum.builder');
-        $payumBuilder->addMethodCall('addGatewayFactoryConfig', ['payzen', $defaultConfig]);
-        $payumBuilder->addMethodCall('addGatewayFactory', ['payzen', [PayzenGatewayFactory::class, 'build']]);
+        $builder->addMethodCall(
+            'addGatewayFactoryConfig',
+            ['payzen', new Parameter('ekyna_payum_payzen.api_config')]
+        );
+
+        $builder->addMethodCall(
+            'addGatewayFactory',
+            ['payzen', [PayzenGatewayFactory::class, 'build']]
+        );
     }
 }
-
