@@ -1,7 +1,7 @@
 PayumPayzenBundle
 ===
 
-[![Build](https://github.com/ekyna/PayumPayzenBundle/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/ekyna/PayumPayzenBundle/actions/workflows/build.yml)
+[![Build](https://github.com/ekyna/PayumPayzenBundle/actions/workflows/build.yml/badge.svg)](https://github.com/ekyna/PayumPayzenBundle/actions/workflows/build.yml)
 
 Payum Bundle for Payzen gateway (Systempay, Scellius).
 
