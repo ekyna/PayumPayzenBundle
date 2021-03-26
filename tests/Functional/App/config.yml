@@ -1,0 +1,23 @@
+framework:
+    secret: ThisTokenIsNotSoSecretChangeIt
+    router: { resource: '%kernel.project_dir%/routing.yml' }
+
+payum:
+    security:
+        token_storage:
+            Payum\Core\Model\Token:
+                filesystem:
+                    id_property: hash
+                    storage_dir: '%kernel.cache_dir%'
+
+    gateways:
+        payzen:
+            factory: payzen
+
+ekyna_payum_payzen:
+    api:
+        ctx_mode: TEST
+        site_id: '1324567890'
+        certificate: '1234567890'
+        directory: '%kernel.cache_dir%/payzen'
+        debug: true

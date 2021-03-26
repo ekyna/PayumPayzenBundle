@@ -2,6 +2,7 @@
 
 namespace Ekyna\Bundle\PayumPayzenBundle\DependencyInjection;
 
+use Ekyna\Component\Payum\Payzen\Api\Api;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -16,14 +17,15 @@ class Configuration implements ConfigurationInterface
     /**
      * @inheritdoc
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $root = $treeBuilder->root('ekyna_payum_payzen');
+        $builder = new TreeBuilder('ekyna_payum_payzen');
+
+        $root = $builder->getRootNode();
 
         $this->addApiSection($root);
 
-        return $treeBuilder;
+        return $builder;
     }
 
     /**
@@ -31,7 +33,7 @@ class Configuration implements ConfigurationInterface
      *
      * @param ArrayNodeDefinition $node
      */
-    public function addApiSection(ArrayNodeDefinition $node)
+    public function addApiSection(ArrayNodeDefinition $node): void
     {
         $node
             ->children()
@@ -40,6 +42,10 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->scalarNode('endpoint')
                             ->defaultNull()
+                            ->validate()
+                                ->ifNotInArray([null, Api::ENDPOINT_SYSTEMPAY, Api::ENDPOINT_SCELLIUS])
+                                ->thenInvalid('Invalid api endpoint %s')
+                            ->end()
                         ->end()
                         ->scalarNode('site_id')
                             ->isRequired()
@@ -50,11 +56,16 @@ class Configuration implements ConfigurationInterface
                             ->cannotBeEmpty()
                         ->end()
                         ->enumNode('ctx_mode')
-                            ->values(['TEST', 'PRODUCTION'])
+                            ->isRequired()
+                            ->values([Api::MODE_TEST, Api::MODE_PRODUCTION])
+                        ->end()
+                        ->enumNode('hash_mode')
+                            ->defaultValue(Api::HASH_MODE_SHA256)
+                            ->values([Api::HASH_MODE_SHA256, Api::HASH_MODE_SHA1])
                         ->end()
                         ->scalarNode('directory')
                             ->cannotBeEmpty()
-                            ->defaultValue('%kernel.root_dir%/../var/payzen')
+                            ->defaultValue('%kernel.project_dir%/var/payzen')
                         ->end()
                         ->booleanNode('debug')
                             ->defaultValue('%kernel.debug%')
