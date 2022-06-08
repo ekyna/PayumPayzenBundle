@@ -23,7 +23,7 @@ class EkynaPayumPayzenBundleTest extends TestCase
         $container = $this->createMock(ContainerBuilder::class);
 
         $container
-            ->expects($this->at(0))
+            ->expects(self::once())
             ->method('addCompilerPass')
             ->with($this->isInstanceOf(RegisterGatewayPass::class));
 

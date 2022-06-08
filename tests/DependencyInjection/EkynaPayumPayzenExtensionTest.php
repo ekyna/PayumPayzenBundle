@@ -39,7 +39,7 @@ class EkynaPayumPayzenExtensionTest extends TestCase
         /** @var MockObject|ContainerBuilder $container */
         $container = $this->createMock(ContainerBuilder::class);
         $container
-            ->expects($this->at(0))
+            ->expects(self::once())
             ->method('setParameter')
             ->with('ekyna_payum_payzen.api_config', $expected);
 

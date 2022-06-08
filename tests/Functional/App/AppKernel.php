@@ -20,7 +20,7 @@ use function sys_get_temp_dir;
  */
 class AppKernel extends Kernel
 {
-    public function registerBundles()
+    public function registerBundles(): array
     {
         return [
             new FrameworkBundle(),
@@ -32,21 +32,21 @@ class AppKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config.yml');
+        $loader->load(__DIR__ . '/config.yml');
     }
 
-    public function getProjectDir()
+    public function getProjectDir(): string
     {
         return __DIR__;
     }
 
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
-        return sys_get_temp_dir().'/EkynaPayumPazen/cache/'.$this->environment;
+        return sys_get_temp_dir() . '/EkynaPayumPazen/cache/' . $this->environment;
     }
 
-    public function getLogDir()
+    public function getLogDir(): string
     {
-        return sys_get_temp_dir().'/EkynaPayumPazen/logs';
+        return sys_get_temp_dir() . '/EkynaPayumPazen/logs';
     }
 }

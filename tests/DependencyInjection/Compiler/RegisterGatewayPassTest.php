@@ -28,24 +28,24 @@ class RegisterGatewayPassTest extends TestCase
         $definition = $this->createMock(Definition::class);
 
         $container
-            ->expects($this->at(0))
+            ->expects(self::once())
             ->method('hasDefinition')
             ->with('payum.builder')
             ->willReturn(true);
 
         $container
-            ->expects($this->at(1))
+            ->expects(self::once())
             ->method('getDefinition')
             ->with('payum.builder')
             ->willReturn($definition);
 
         $definition
-            ->expects($this->at(0))
+            ->expects(self::at(0))
             ->method('addMethodCall')
             ->with('addGatewayFactoryConfig', ['payzen', new Parameter('ekyna_payum_payzen.api_config')]);
 
         $definition
-            ->expects($this->at(1))
+            ->expects(self::at(1))
             ->method('addMethodCall')
             ->with('addGatewayFactory', ['payzen', [PayzenGatewayFactory::class, 'build']]);
 
