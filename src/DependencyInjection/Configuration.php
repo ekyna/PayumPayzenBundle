@@ -43,7 +43,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('endpoint')
                             ->defaultNull()
                             ->validate()
-                                ->ifNotInArray([null, Api::ENDPOINT_SYSTEMPAY, Api::ENDPOINT_SCELLIUS])
+                                ->ifNotInArray([null, Api::ENDPOINT_SYSTEMPAY, Api::ENDPOINT_SCELLIUS, Api::ENDPOINT_CLICANDPAY])
                                 ->thenInvalid('Invalid api endpoint %s')
                             ->end()
                         ->end()
